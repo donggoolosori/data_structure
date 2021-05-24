@@ -64,12 +64,11 @@ class Queue {
     Node<T>* curr = head;
     Node<T>* next = head->getNext();
 
-    while (next != NULL) {
+    while (curr != NULL) {
       delete curr;
       curr = next;
-      next = next->getNext();
+      if (next != NULL) next = next->getNext();
     }
-    delete curr;
   }
 };
 

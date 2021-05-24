@@ -52,6 +52,16 @@ class Stack {
   }
   // top
   T top() { return head->getdata(); }
+  ~Stack() {
+    Node<T>* curr = head;
+    Node<T>* next = head->getNext();
+
+    while (curr != NULL) {
+      delete curr;
+      curr = next;
+      if (next != NULL) next = next->getNext();
+    }
+  }
 };
 
 int main() {
