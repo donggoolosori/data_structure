@@ -81,6 +81,42 @@ class List {
       return tail->getData();
     }
   }
+  // 특정 인덱스 삭제
+  void erase(int index) {
+    if (index >= list_size) {
+      cout << "인덱스 범위가 올바르지 않습니다.\n";
+      return;
+    }
+    int cnt = 0;
+    Node *prev = NULL;
+    Node *curr = head;
+    if (index == 0) {
+      head = head->getNext();
+      delete curr;
+      return;
+    }
+    while (curr != NULL) {
+      if (cnt == index) {
+        prev->setNext(curr->getNext());
+        delete curr;
+        if (cnt == list_size - 1) {
+          tail = prev;
+        }
+        list_size--;
+        return;
+      }
+      cnt++;
+      prev = curr;
+      curr = curr->getNext();
+    }
+  }
+  void showAll() {
+    Node *curr = head;
+    while (curr != NULL) {
+      cout << curr->getData() << " -> ";
+      curr = curr->getNext();
+    }
+  }
   ~List() {
     Node *next = head->getNext();
     Node *curr = head;
@@ -95,14 +131,25 @@ class List {
 
 int main() {
   List list;
+  // 뒤에서부터 insert
   list.insert(1);
   list.insert(2);
   list.insert(3);
-  list.insert(4, 0);
+  list.insert(4);
+  list.insert(5);
+  list.insert(6);
+  list.insert(7);
+  list.insert(8);
+  list.insert(9);
+  list.insert(10);
 
-  cout << list.size() << '\n';
-  cout << list.front() << '\n';
-  cout << list.back() << '\n';
+  list.erase(8);
+  list.insert(11, 2);
+
+  cout << "front: " << list.front() << '\n';
+  cout << "back: " << list.back() << '\n';
+  cout << "size: " << list.size() << '\n';
+  list.showAll();
 
   return 0;
 }
