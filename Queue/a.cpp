@@ -1,3 +1,4 @@
+// delete segmentation fault 오류
 #include <iostream>
 
 using namespace std;
