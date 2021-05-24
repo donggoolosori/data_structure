@@ -55,11 +55,11 @@ class Stack {
 };
 
 int main() {
-  Stack<int> stk;
-  stk.push(1);
-  stk.push(2);
-  stk.push(3);
-  stk.push(4);
+  Stack<double> stk;
+  stk.push(1.2);
+  stk.push(2.1);
+  stk.push(3.4);
+  stk.push(4.7);
 
   while (!stk.empty()) {
     cout << stk.top() << '\n';
