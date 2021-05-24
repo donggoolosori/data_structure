@@ -53,7 +53,7 @@ class List {
           head = newNode;
         } else if (cnt == list_size - 1) {
           insert(data);
-          list_size--;
+          list_size--;  // insert 함수에서 중복으로 size 증가
         } else {
           prev->setNext(newNode);
           newNode->setNext(curr);
@@ -79,6 +79,16 @@ class List {
       return -1;
     } else {
       return tail->getData();
+    }
+  }
+  ~List() {
+    Node *next = head->getNext();
+    Node *curr = head;
+
+    while (curr != NULL) {
+      delete curr;
+      curr = next;
+      if (next != NULL) next = next->getNext();
     }
   }
 };
