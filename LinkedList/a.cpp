@@ -16,16 +16,16 @@ class Node {
 
 class List {
  private:
-  int size;
+  int list_size;
   Node *head, *tail, *curr;
 
  public:
-  List() : size(0), head(NULL), tail(NULL), curr(NULL) {}
+  List() : list_size(0), head(NULL), tail(NULL), curr(NULL) {}
   // list에 저장된 데이터 수 반환
-  int size() { return size; }
+  int size() { return list_size; }
   // 삽입
   void insert(int data) {
-    size++;
+    list_size++;
     Node *newNode = new Node(data);
     if (head == NULL) {
       head = newNode;
@@ -43,6 +43,24 @@ class List {
     }
   }
   // 가장 뒤 데이터 반환
+  int back() {
+    if (tail == NULL) {
+      return -1;
+    } else {
+      return tail->getData();
+    }
+  }
 };
 
-int main() { return 0; }
+int main() {
+  List list;
+  list.insert(1);
+  list.insert(2);
+  list.insert(3);
+
+  cout << list.size() << '\n';
+  cout << list.front() << '\n';
+  cout << list.back() << '\n';
+
+  return 0;
+}
