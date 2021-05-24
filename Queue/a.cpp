@@ -13,7 +13,7 @@ class Node {
     this->data = data;
     next = NULL;
   }
-  T getdata() { return data; }
+  T getData() { return data; }
   Node<T>* getNext() { return next; }
   void setNext(Node<T>* next) { this->next = next; }
 };
@@ -59,7 +59,7 @@ class Queue {
     q_size--;
   }
   // front
-  T front() { return head->getdata(); }
+  T front() { return head->getData(); }
   // size
   int size() { return q_size; }
   // 소멸자
