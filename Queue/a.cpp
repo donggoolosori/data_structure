@@ -9,7 +9,10 @@ class Node {
   Node<T>* next;
 
  public:
-  Node(T data) { this->data = data; }
+  Node(T data) {
+    this->data = data;
+    next = NULL;
+  }
   T getdata() { return data; }
   Node<T>* getNext() { return next; }
   void setNext(Node<T>* next) { this->next = next; }
@@ -24,7 +27,7 @@ class Queue {
 
  public:
   // 생성자
-  Queue() : q_size(0), head(NULL), tail(NULL) {}
+  Queue() : q_size(0), head(new Node<T>(0)), tail(new Node<T>(0)) {}
   // empty
   bool empty() {
     if (q_size == 0)
@@ -34,7 +37,6 @@ class Queue {
   }
   // push
   void push(T data) {
-    q_size++;
     Node<T>* newNode = new Node(data);
     if (empty()) {
       head = newNode;
@@ -43,6 +45,7 @@ class Queue {
       tail->setNext(newNode);
       tail = newNode;
     }
+    q_size++;
   }
   // pop
   void pop() {
@@ -50,10 +53,10 @@ class Queue {
       cout << "pop연산 실패. 큐가 이미 비어있습니다.\n";
       return;
     }
-    q_size--;
     Node<T>* delNode = head;
     head = head->getNext();
     delete delNode;
+    q_size--;
   }
   // front
   T front() { return head->getdata(); }
@@ -63,11 +66,11 @@ class Queue {
   ~Queue() {
     Node<T>* curr = head;
     Node<T>* next = head->getNext();
-
-    while (curr != NULL) {
-      delete curr;
+    delete curr;
+    while (next != NULL) {
       curr = next;
-      if (next != NULL) next = next->getNext();
+      next = next->getNext();
+      delete curr;
     }
   }
 };
