@@ -22,7 +22,7 @@ class Stack {
   Node<T>* head;
 
  public:
-  Stack() : stack_size(0), head(NULL){};
+  Stack() : stack_size(0), head(new Node<T>(0)){};
   // is empty
   bool empty() {
     if (stack_size == 0)
@@ -56,10 +56,11 @@ class Stack {
     Node<T>* curr = head;
     Node<T>* next = head->getNext();
 
-    while (curr != NULL) {
-      delete curr;
+    delete curr;
+    while (next != NULL) {
       curr = next;
-      if (next != NULL) next = next->getNext();
+      next = next->getNext();
+      delete curr;
     }
   }
 };
