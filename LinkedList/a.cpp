@@ -3,22 +3,24 @@
 
 using namespace std;
 
+template <typename T>
 class Node {
  private:
-  int data;
-  Node *next;
+  T data;
+  Node<T> *next;
 
  public:
-  Node(int data) : data(data), next(NULL){};
-  int getData() { return data; }
-  Node *getNext() { return next; }
-  void setNext(Node *next) { this->next = next; }
+  Node(T data) : data(data), next(NULL){};
+  T getData() { return data; }
+  Node<T> *getNext() { return next; }
+  void setNext(Node<T> *next) { this->next = next; }
 };
 
+template <typename T>
 class List {
  private:
   int list_size;
-  Node *head, *tail;
+  Node<T> *head, *tail;
 
  public:
   List() : list_size(0), head(NULL), tail(NULL) {}
@@ -27,7 +29,7 @@ class List {
   // 삽입
   void insert(int data) {
     list_size++;
-    Node *newNode = new Node(data);
+    Node<T> *newNode = new Node<T>(data);
     if (head == NULL) {
       head = newNode;
     } else {
@@ -36,15 +38,15 @@ class List {
     tail = newNode;
   }
   // 특정 인덱스에 삽입
-  void insert(int data, int index) {
+  void insert(T data, int index) {
     if (index > list_size) {
       cout << "삽입가능 범위가 아닙니다\n";
       return;
     }
     list_size++;
-    Node *newNode = new Node(data);
-    Node *prev = NULL;
-    Node *curr = head;
+    Node<T> *newNode = new Node<T>(data);
+    Node<T> *prev = NULL;
+    Node<T> *curr = head;
     int cnt = 0;
     while (true) {
       if (cnt == index) {
@@ -66,7 +68,7 @@ class List {
     }
   }
   // 가장 앞의 데이터 반환
-  int front() {
+  T front() {
     if (head == NULL) {
       return -1;
     } else {
@@ -74,7 +76,7 @@ class List {
     }
   }
   // 가장 뒤 데이터 반환
-  int back() {
+  T back() {
     if (tail == NULL) {
       return -1;
     } else {
@@ -88,8 +90,8 @@ class List {
       return;
     }
     int cnt = 0;
-    Node *prev = NULL;
-    Node *curr = head;
+    Node<T> *prev = NULL;
+    Node<T> *curr = head;
     if (index == 0) {
       head = head->getNext();
       delete curr;
@@ -112,15 +114,15 @@ class List {
   }
   // 데이터 모두 출력
   void showAll() {
-    Node *curr = head;
+    Node<T> *curr = head;
     while (curr != NULL) {
       cout << curr->getData() << " -> ";
       curr = curr->getNext();
     }
   }
   ~List() {
-    Node *next = head->getNext();
-    Node *curr = head;
+    Node<T> *next = head->getNext();
+    Node<T> *curr = head;
 
     while (curr != NULL) {
       delete curr;
@@ -131,18 +133,18 @@ class List {
 };
 
 int main() {
-  List list;
+  List<int> list;
   // 뒤에서부터 insert
-  list.insert(1);
-  list.insert(2);
   list.insert(3);
+  list.insert(7);
+  list.insert(2);
   list.insert(4);
   list.insert(5);
-  list.insert(6);
-  list.insert(7);
-  list.insert(8);
   list.insert(9);
   list.insert(10);
+  list.insert(7);
+  list.insert(6);
+  list.insert(1);
 
   list.erase(8);
   list.insert(11, 2);
