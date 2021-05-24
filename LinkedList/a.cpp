@@ -34,6 +34,15 @@ class List {
     }
     tail = newNode;
   }
+  // 가장 앞의 데이터 반환
+  int front() {
+    if (head == NULL) {
+      return -1;
+    } else {
+      return head->getData();
+    }
+  }
+  // 가장 뒤 데이터 반환
 };
 
 int main() { return 0; }
