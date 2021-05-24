@@ -110,6 +110,7 @@ class List {
       curr = curr->getNext();
     }
   }
+  // 데이터 모두 출력
   void showAll() {
     Node *curr = head;
     while (curr != NULL) {
