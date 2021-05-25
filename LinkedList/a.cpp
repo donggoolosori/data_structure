@@ -23,7 +23,6 @@ class List {
   Node<T> *head, *tail;
 
  public:
-  List() : list_size(0), head(NULL), tail(NULL) {}
   // list에 저장된 데이터 수 반환
   int size() { return list_size; }
   // 삽입
