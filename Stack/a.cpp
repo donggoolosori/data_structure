@@ -22,7 +22,6 @@ class Stack {
   Node<T>* head;
 
  public:
-  Stack() : stack_size(0), head(new Node<T>(0)){};
   // is empty
   bool empty() {
     if (stack_size == 0)
