@@ -146,7 +146,9 @@ int main() {
   list.insert(6);
   list.insert(1);
 
+  // index 8의 원소 삭제
   list.erase(8);
+  // 11을 index 2 위치에 삽입
   list.insert(11, 2);
 
   cout << "front: " << list.front() << '\n';
