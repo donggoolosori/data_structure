@@ -52,7 +52,9 @@ class Stack {
   }
   // top
   T top() { return head->getdata(); }
+  // destructor
   ~Stack() {
+    if (empty()) return;
     Node<T>* curr = head;
     Node<T>* next = head->getNext();
 
