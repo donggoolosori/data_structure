@@ -120,6 +120,7 @@ class List {
     }
   }
   ~List() {
+    if (empty()) return;
     Node<T> *next = head->getNext();
     Node<T> *curr = head;
 
