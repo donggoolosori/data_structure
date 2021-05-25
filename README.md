@@ -3,4 +3,5 @@
 - Linked List
 - Queue
 - Stack
+- Tree
 - Sort
