@@ -1,4 +1,3 @@
-// delete segmentation fault 오류
 #include <iostream>
 
 using namespace std;
@@ -27,8 +26,6 @@ class Queue {
   Node<T>* tail;
 
  public:
-  // 생성자
-  Queue() : q_size(0), head(new Node<T>(0)), tail(new Node<T>(0)) {}
   // empty
   bool empty() {
     if (q_size == 0)
@@ -65,6 +62,8 @@ class Queue {
   int size() { return q_size; }
   // 소멸자
   ~Queue() {
+    // 큐가 비어있는데 delete를 시도하면 segmentation error
+    if (empty()) return;
     Node<T>* curr = head;
     Node<T>* next = head->getNext();
     delete curr;
