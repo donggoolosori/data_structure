@@ -1,7 +1,15 @@
 # c++ 자료구조 구현 
 - HashTable
+  - chaining
 - Linked List
 - Queue
 - Stack
 - Tree
+  - binary tree
+  - heap
 - Sort
+  - bubble
+  - selection
+  - insertion
+  - merge
+  - quick
