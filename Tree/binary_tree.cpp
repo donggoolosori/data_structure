@@ -60,7 +60,6 @@ int main() {
   Node n7(7);
   Node n8(8);
   Node n9(9);
-
   root.setLeft(&n2);
   root.setRight(&n3);
   n2.setLeft(&n4);
@@ -70,6 +69,7 @@ int main() {
   n4.setLeft(&n8);
   n4.setRight(&n9);
 
+  // 순회 출력
   cout << "전위 순회: ";
   preOrder(&root);
   cout << '\n';
