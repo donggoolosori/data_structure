@@ -11,18 +11,18 @@ using namespace std;
 vector<int> temp(7);
 vector<int> arr = {38, 27, 43, 9, 3, 82, 10};
 
-void merge(int left, int right) {
-  int mid = (left + right) / 2;
+void merge(int start, int end) {
+  int mid = (start + end) / 2;
   // lIdx: 왼쪽 부분배열의 인덱스, rIdx: 오른쪽 부분배열의 인덱스, k: 현재까지
   // 병합 한 인덱스
-  int lIdx = left, rIdx = mid + 1, k = left;
+  int lIdx = start, rIdx = mid + 1, k = start;
 
-  while (k <= right) {
+  while (k <= end) {
     if (lIdx > mid) {
       temp[k++] = arr[rIdx++];
       continue;
     }
-    if (rIdx > right) {
+    if (rIdx > end) {
       temp[k++] = arr[lIdx++];
       continue;
     }
@@ -31,17 +31,17 @@ void merge(int left, int right) {
     else
       temp[k++] = arr[rIdx++];
   }
-  for (int i = left; i <= right; i++) arr[i] = temp[i];
+  for (int i = start; i <= end; i++) arr[i] = temp[i];
 }
 
 // 더 이상 분할 되지 않을 때까지 분할한 후
 // merge 함수를 호출하여 병합한다.
-void merge_sort(int left, int right) {
-  if (left >= right) return;
-  int mid = (left + right) / 2;
-  merge_sort(left, mid);
-  merge_sort(mid + 1, right);
-  merge(left, right);
+void merge_sort(int start, int end) {
+  if (start >= end) return;
+  int mid = (start + end) / 2;
+  merge_sort(start, mid);
+  merge_sort(mid + 1, end);
+  merge(start, end);
 }
 // 모든 원소 출력
 void print() {
