@@ -1,4 +1,6 @@
 // 학번으로 학생정보를 찾는 해쉬 테이블
+// chaining으로 충돌해결
+// closed addressing
 #include <iostream>
 #include <string>
 
