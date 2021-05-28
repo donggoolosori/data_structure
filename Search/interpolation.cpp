@@ -6,7 +6,7 @@
 using namespace std;
 
 int interpolation(vector<int> &arr, int low, int high, const int target) {
-  if (low > high) return -1;
+  if (arr[low] > target || arr[high] < target) return -1;
   int mid =
       (double)(target - arr[low]) / (arr[high] - arr[low]) * (high - low) + low;
   if (arr[mid] == target) {
