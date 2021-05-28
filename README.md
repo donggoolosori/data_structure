@@ -3,13 +3,19 @@
   - chaining
 - Linked List
 - Queue
-- Stack
-- Tree
-  - binary tree
-  - heap
+- Search
+  - binary
+    - upper
+    - lower
+  - interpolation 
 - Sort
   - bubble
   - selection
   - insertion
   - merge
   - quick
+- Stack
+- Tree
+  - binary tree
+  - heap
+
