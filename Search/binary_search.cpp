@@ -8,7 +8,6 @@ int binarySearch(vector<int> &arr, int target) {
 
   while (low <= high) {
     int mid = (low + high) / 2;
-    cout << mid << ' ' << arr[mid] << '\n';
     if (arr[mid] == target) {
       return mid;
     }
@@ -21,6 +20,7 @@ int binarySearch(vector<int> &arr, int target) {
 
   return -1;
 }
+
 int main() {
   vector<int> arr = {1, 3, 4, 7, 8, 11, 14, 21, 32, 42};
   // 14의 위치 탐색
