@@ -8,6 +8,7 @@
     - upper
     - lower
   - interpolation 
+  - binary search tree
 - Sort
   - bubble
   - selection
