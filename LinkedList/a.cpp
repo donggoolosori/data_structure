@@ -25,8 +25,9 @@ class List {
  public:
   // list에 저장된 데이터 수 반환
   int size() { return list_size; }
+  bool empty() { return list_size == 0 ? true : false; }
   // 삽입
-  void insert(int data) {
+  void insert(T data) {
     list_size++;
     Node<T> *newNode = new Node<T>(data);
     if (head == NULL) {
