@@ -12,10 +12,15 @@ class Node {
 
  public:
   Node() {}
+
   Node(int id, string name) : id(id), name(name) {}
+
   int getId() { return id; }
+
   string getName() { return name; }
+
   void setNext(Node* next) { this->next = next; }
+
   Node* getNext() { return next; }
 };
 
@@ -27,6 +32,7 @@ class HashTable {
 
  public:
   HashTable(int size) : size(size) { hashTable = new Node[size]; }
+
   void put(int id, string value) {
     int key = hashFunction(id);
     Node* curr = &hashTable[key];
@@ -39,6 +45,7 @@ class HashTable {
     Node* newNode = new Node(id, value);
     curr->setNext(newNode);
   }
+
   string get(int id) {
     int key = hashFunction(id);
     Node* curr = hashTable[key].getNext();
@@ -50,6 +57,7 @@ class HashTable {
     }
     return "Not Exists";
   }
+
   ~HashTable() {
     for (int i = 0; i < size; i++) {
       Node* curr = hashTable[i].getNext();
