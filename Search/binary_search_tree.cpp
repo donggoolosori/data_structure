@@ -1,3 +1,4 @@
+// 현재 segmentaion fault
 #include <iostream>
 #include <string>
 
