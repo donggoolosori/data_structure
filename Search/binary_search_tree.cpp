@@ -1,169 +1,60 @@
-// 현재 segmentaion fault
 #include <iostream>
-#include <string>
 
 using namespace std;
 
-class Node {
- private:
-  int key, data;
-  Node *left, *right;
+class BST {
+  int data;
+  BST *left, *right;
 
  public:
-  Node(int key, int data) : key(key), data(data) {}
-  int getKey() { return key; }
-  void setKey(int key) { this->key = key; }
-
-  int getData() { return data; }
-  void setData(int data) { this->data = data; }
-
-  void setLeft(Node* newNode) { left = newNode; }
-  Node* getLeft() { return left; }
-
-  void setRight(Node* newNode) { right = newNode; }
-  Node* getRight() { return right; }
-
-  ~Node() { delete this; }
+  // default constructor
+  BST();
+  // paramiterized constructor
+  BST(int);
+  // insert function
+  BST* insert(BST*, int);
+  // Inorder traversal
+  void inorder(BST*);
 };
 
-class Tree {
- private:
-  Node* root;
+// BST::BST() : data(0), left(NULL), right(NULL) {}
 
- public:
-  void insert(int key, int data) {
-    Node* newNode = new Node(key, data);
-    if (root == NULL) {
-      root = newNode;
-      return;
-    }
-    Node* curr = root;
-    Node* parent = NULL;
-    while (curr != NULL) {
-      parent = curr;
-      if (curr->getKey() > key)
-        curr = curr->getLeft();
-      else
-        curr = curr->getRight();
-    }
+BST::BST(int data) : data(data), left(NULL), right(NULL) {}
 
-    if (parent->getKey() < key)
-      parent->setRight(newNode);
-    else
-      parent->setLeft(newNode);
+BST* BST::insert(BST* root, int data) {
+  if (root == NULL) {
+    return new BST(data);
   }
 
-  void erase(int key) {
-    if (root == NULL) return;
-
-    Node* curr = root;
-    Node* parent = NULL;
-
-    while (curr != NULL) {
-      parent = curr;
-
-      if (curr->getKey() == key) break;
-
-      if (curr->getKey() < key) {
-        curr = curr->getRight();
-      } else {
-        curr = curr->getLeft();
-      }
-    }
-
-    // 삭제 노드가 단말노드일 경우
-    if (curr->getLeft() == NULL && curr->getRight() == NULL) {
-      if (parent->getLeft() == curr) {
-        parent->setLeft(NULL);
-      } else {
-        parent->setRight(NULL);
-      }
-
-      delete curr;
-    }
-    // 오른쪽 노드만 갖는경우
-    else if (curr->getLeft() == NULL) {
-      if (parent->getLeft() == curr) {
-        parent->setLeft(curr->getRight());
-
-        delete curr;
-      } else {
-        parent->setRight(curr->getRight());
-
-        delete curr;
-      }
-      // 왼쪽 노드만 갖는경우
-    } else if (curr->getRight() == NULL) {
-      if (parent->getLeft() == curr) {
-        parent->setLeft(curr->getLeft());
-
-        delete curr;
-      } else {
-        parent->setRight(curr->getLeft());
-
-        delete curr;
-      }
-    } else {
-      Node* minParent = curr;
-      Node* minNode = curr->getRight();
-
-      while (minNode->getLeft() != NULL) {
-        minParent = minNode;
-        minNode = minNode->getLeft();
-      }
-
-      curr->setData(minNode->getData());
-      curr->setKey(minNode->getKey());
-
-      if (minParent->getLeft() == minNode) {
-        minParent->setLeft(minNode->getRight());
-      } else {
-        minParent->setRight(minNode->getRight());
-      }
-
-      delete minNode;
-    }
+  if (data > root->data) {
+    root->right = insert(root->right, data);
+  } else {
+    root->left = insert(root->left, data);
   }
 
-  int get(int key) {
-    Node* curr = root;
+  return root;
+}
 
-    while (curr != NULL) {
-      if (curr->getKey() == key) return curr->getData();
+void BST::inorder(BST* root) {
+  if (root == NULL) return;
 
-      if (key < curr->getKey()) {
-        curr = curr->getLeft();
-      } else {
-        curr = curr->getRight();
-      }
-    }
-
-    return -1;
-  }
-  void clear(Node* root) {
-    if (root == NULL) return;
-
-    clear(root->getLeft());
-    clear(root->getRight());
-
-    delete root;
-  }
-  ~Tree() { clear(root); }
-};
+  inorder(root->left);
+  cout << root->data << '\n';
+  inorder(root->right);
+}
 
 int main() {
-  Tree* tree = new Tree();
+  BST bst, *root = NULL;
+  root = bst.insert(root, 50);
 
-  tree->insert(2001, 1);
-  tree->insert(2002, 2);
-  tree->insert(2003, 3);
-  tree->insert(2004, 4);
+  bst.insert(root, 30);
+  bst.insert(root, 20);
+  bst.insert(root, 40);
+  bst.insert(root, 70);
+  bst.insert(root, 60);
+  bst.insert(root, 80);
 
-  tree->erase(2004);
-
-  cout << tree->get(2004) << '\n';
-
-  delete tree;
+  bst.inorder(root);
 
   return 0;
 }
